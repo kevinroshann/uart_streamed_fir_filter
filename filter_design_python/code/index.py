@@ -31,3 +31,7 @@ plt.xlabel("freq")
 plt.ylabel("mag")
 plt.show()
 
+plt.plot(w / np.pi,np.unwrap(np.angle(h)))
+plt.xlabel("freq")
+plt.ylabel("phase")
+plt.show()
