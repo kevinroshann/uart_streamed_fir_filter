@@ -8,7 +8,7 @@ numtaps =16
 
 
 cutoff_freq = 2000
-fs=11520
+fs=10000
 cutoff=cutoff_freq/(fs/2)
 
 coefficients = firwin(numtaps, cutoff,window='rectangular',pass_zero=True)
