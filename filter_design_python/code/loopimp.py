@@ -1,5 +1,7 @@
 h = [0, 5, 4, -5, -10, 0, 24, 45, 45, 24, 0, -10, -5, 4, 5, 0]
 x = [1, 2, 3, 4, 5]
+import numpy as np
+
 
 
 outlen=len(x)
@@ -13,3 +15,5 @@ for i in range(1,outlen+1): #5
     a.append(acc)
 
 print("acc = ",a)
+
+print(np.convolve(h, x))

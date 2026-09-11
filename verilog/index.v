@@ -5,7 +5,8 @@ module filter (
     input wire clk,
     input wire rstn,
     input wire signed [7:0] sig,
-    output wire signed [19:0] trunc_op
+    output wire signed [19:0] samp_op,
+    output wire signed [7:0] trunc_op
 );
     
     //assume the sig is q1.7
@@ -73,7 +74,31 @@ assign sum = res[0]  + res[1]  + res[2]  + res[3]  +
              res[12] + res[13] + res[14] + res[15];
 
 
-assign trunc_op=sum;
+
+wire signed [19:0] rounded_sum;
+assign rounded_sum = sum + 20'sd64;
+
+
+wire signed [12:0] scaled_sum;
+assign scaled_sum = rounded_sum >>> 7;
+
+reg signed [7:0] final_trunc;
+
+always @(*) begin
+    // Positive Overflow: Value > 127
+    if (scaled_sum > 13'sd127) begin
+        final_trunc = 8'sd127;
+    // Negative Overflow: Value < -128
+    end else if (scaled_sum < -13'sd128) begin
+        final_trunc = -8'sd128;
+    // Normal Range: Safely assign low 8 bits
+    end else begin
+        final_trunc = scaled_sum[7:0];
+    end
+end
+
+assign samp_op  = sum;
+assign trunc_op = final_trunc;
 
 
 endmodule
