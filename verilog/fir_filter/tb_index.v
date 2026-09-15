@@ -36,24 +36,24 @@ integer i;
         sig=8'sd0;
 
 
-        x_input[0] = 8'sd1;
-        x_input[1] = 8'sd2;
-        x_input[2] = 8'sd3;
-        x_input[3] = 8'sd4;
-        x_input[4] = 8'sd5;
+        x_input[0] = 8'sd60;
+        x_input[1] = 8'sd70;
+        x_input[2] = 8'sd80;
+        x_input[3] = 8'sd90;
+        x_input[4] = 8'sd100;
 
 
         #15 rstn=1;
-// Stream 5 inputs + 1 extra zero sample to flush the last calculation
-for (i = 0; i < 20; i = i + 1) begin
+
+for (i = 0; i < 21; i = i + 1) begin
     @(posedge clk);
     if (i < 5) 
         sig <= x_input[i];
     else 
-        sig <= 8'sd0; // Flush sample
+        sig <= 8'sd0; 
 
     #1;
-    $display("Cycle = %0d | sig = %3d | samp_op = %5d | trunc_op = %5d", i + 1, sig, $signed(samp_op), $signed(trunc_op));
+    $display("cycle = %d  sig = %d  samp_op = %d  trunc_op = %d", i + 1, sig, $signed(samp_op), $signed(trunc_op));
 end
         #20;
 $finish;

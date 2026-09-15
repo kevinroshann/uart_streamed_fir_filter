@@ -10,12 +10,12 @@ module filter (
 );
     
     //assume the sig is q1.7
-// Declaration (16 elements, indexed 0 to 15)
+
 wire signed [7:0] coeff [0:15];
 reg signed [7:0] signal[0:15];
 wire signed [15:0] res[0:15];
 
-// Continuous assignments
+
 assign coeff[0]  = 8'sd0;
 assign coeff[1]  = 8'sd5;
 assign coeff[2]  = 8'sd4;
@@ -85,13 +85,13 @@ assign scaled_sum = rounded_sum >>> 7;
 reg signed [7:0] final_trunc;
 
 always @(*) begin
-    // Positive Overflow: Value > 127
+   
     if (scaled_sum > 13'sd127) begin
         final_trunc = 8'sd127;
-    // Negative Overflow: Value < -128
+
     end else if (scaled_sum < -13'sd128) begin
         final_trunc = -8'sd128;
-    // Normal Range: Safely assign low 8 bits
+
     end else begin
         final_trunc = scaled_sum[7:0];
     end
