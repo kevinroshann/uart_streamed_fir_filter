@@ -24,6 +24,10 @@ localparam [2:0]
     RX_SAMPLING = 3'd5,
     RX_VALIDATE = 3'd6; 
 
+
+reg rx_sync_1 = 1'b1;
+reg rx_sync_2 = 1'b1;
+
 reg [2:0] rx_state = RX_IDLE;
 reg [2:0] next_state;
 
@@ -37,6 +41,11 @@ reg [2:0] sampling_val;
 reg [3:0] rx_data_count; 
 
 wire recieved_correctly = (rx_state == RX_VALIDATE);
+
+always @(posedge clk) begin
+    rx_sync_1 <= rx;
+    rx_sync_2 <= rx_sync_1;
+end
 
 always @(posedge clk) begin
     if (rst) begin
@@ -60,7 +69,7 @@ always @(posedge clk) begin
         case (rx_state)
 
             RX_IDLE: begin
-                if (!rx) begin
+                if (!rx_sync_2) begin
                     rx_state <= RX_START;
                     rx_clk   <= module_baud / 2;
                     rx_data  <= 8'd0;
@@ -70,7 +79,7 @@ always @(posedge clk) begin
 
             RX_START: begin
                 if (rx_clk == 0) begin
-                    if (!rx) begin
+                    if (!rx_sync_2) begin
                         rx_state                <= RX_SAMPLING;
                         rx_clk                  <= (module_baud / 2) + (2 * module_baud / 8);
                         sampling_bits_remaining <= 3'd5;
@@ -83,7 +92,7 @@ always @(posedge clk) begin
 
             RX_SAMPLING: begin
                 if (rx_clk == 0) begin
-                    if (rx) begin
+                    if (rx_sync_2) begin
                         sampling_val <= sampling_val + 3'd1;
                     end
                     
@@ -117,7 +126,7 @@ always @(posedge clk) begin
 
             RX_STOP: begin
                 if (rx_clk == 0) begin
-                    if (!rx) begin
+                    if (!rx_sync_2) begin
                         rx_state <= RX_ERROR;
                         rx_clk   <= module_baud;
                     end else begin
