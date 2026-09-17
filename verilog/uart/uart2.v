@@ -1,4 +1,4 @@
-module uart(
+module uart2(
     input clk,
     input rst,
     input rx
