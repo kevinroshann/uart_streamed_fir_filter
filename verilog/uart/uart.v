@@ -24,7 +24,7 @@ baud_generator bg(
 .clk(clk),
 .rst(rst),
 .tx_tick(tx_tick),
-.rx(tick_rx_tick)
+.rx_tick(rx_tick)
 
 );
 
