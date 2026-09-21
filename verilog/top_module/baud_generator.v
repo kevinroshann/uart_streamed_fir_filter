@@ -2,7 +2,7 @@ module baud_generator(
 
 input clk,
 input rstn,
-output reg tick,
+output reg tick
 
 
 );
@@ -25,7 +25,6 @@ if (!rstn) begin
     end
     else begin
         tick <= 1'b0;
-        tx_tick <= 1'b0;
         if(acc_rx>=system_clk-rx_needed) begin
             tick<=1'b1;
             acc_rx<=acc_rx+rx_needed-system_clk;
