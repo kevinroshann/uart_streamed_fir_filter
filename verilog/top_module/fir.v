@@ -1,7 +1,7 @@
 module filter (
     input wire clk,
     input wire rstn,
-    input wire en,                      // Added enable pin
+    input wire en,                    
     input wire signed [7:0] sig,
     output wire signed [19:0] samp_op,
     output wire signed [7:0] trunc_op
@@ -41,7 +41,7 @@ end
             for (i=0; i<16; i=i+1) begin
                 signal[i] <= 8'sd0;
             end
-        end else if (en) begin          // Only shift on new valid sample
+        end else if (en) begin         
             for (i=15; i>0; i=i-1) begin
                 signal[i] <= signal[i-1];
             end

@@ -1,2 +1,6 @@
-<?xml version='1.0' encoding='utf-8'?>
-<testsuites name="cocotb tests"><testsuite name="tb_uart" errors="0" failures="0" skipped="0" tests="1" time="0.073" timestamp="2026-09-19T03:26:14.464946+00:00" hostname="kevin"><testcase classname="tb_uart" name="test_uart_loopback" time="0.073"><properties><property name="cocotb" value="True" /><property name="random_seed" value="1789788374" /><property name="file" value="/home/kevin/Desktop/uart_streamed_fir_filter/verilog/uart/tb_uart.py" /><property name="line" value="5" /><property name="sim_time_unit" value="ns" /><property name="sim_time_start" value="0.0" /><property name="sim_time_stop" value="88079.81" /><property name="sim_time_duration" value="88079.81" /><property name="sim_time_ratio" value="1206613.0207633467" /></properties></testcase></testsuite></testsuites>
+<testsuites name="results">
+  <testsuite name="all" package="all">
+    <property name="random_seed" value="1790142927" />
+    <testcase name="test_uart_loopback" classname="tb_uart" file="/home/kevin/Desktop/uart_streamed_fir_filter/verilog/uart/tb_uart.py" lineno="5" time="0.16106629371643066" sim_time_ns="87913.151" ratio_time="545819.6682341106" />
+  </testsuite>
+</testsuites>

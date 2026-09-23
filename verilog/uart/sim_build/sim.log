@@ -1,0 +1,17 @@
+     -.--ns INFO     gpi                                ..mbed/gpi_embed.cpp:108  in set_program_name_in_venv        Using Python virtual environment interpreter at OSS CAD Suite/bin/python
+     -.--ns INFO     gpi                                ../gpi/GpiCommon.cpp:101  in gpi_print_registered_impl       VPI registered
+     0.00ns INFO     cocotb                             Running on Icarus Verilog version 13.0 (devel)
+     0.00ns INFO     cocotb                             Running tests with cocotb v2.0.0.dev0+393b3284 from /home/kevin/fpga/oss-cad-suite/lib/python3.11/site-packages/cocotb-2.0.0.dev0+393b3284-py3.11-linux-x64.egg/cocotb
+     0.00ns INFO     cocotb                             Seeding Python random module with 1790142927
+     0.00ns INFO     cocotb.regression                  running tb_uart.test_uart_loopback (1/1)
+   833.30ns INFO     cocotb.uart                        tx byte 16
+ 87913.15ns INFO     cocotb.uart                        recieved 16
+ 87913.15ns INFO     cocotb.regression                  tb_uart.test_uart_loopback passed
+ 87913.15ns INFO     cocotb.regression                  **************************************************************************************
+                                                        ** TEST                          STATUS  SIM TIME (ns)  REAL TIME (s)  RATIO (ns/s) **
+                                                        **************************************************************************************
+                                                        ** tb_uart.test_uart_loopback     PASS       87913.15           0.16     545819.67  **
+                                                        **************************************************************************************
+                                                        ** TESTS=1 PASS=1 FAIL=0 SKIP=0              87913.15           0.17     531323.05  **
+                                                        **************************************************************************************
+                                                        

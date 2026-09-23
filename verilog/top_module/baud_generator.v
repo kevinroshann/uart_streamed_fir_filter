@@ -13,14 +13,14 @@ localparam baud_rate=115200;
 localparam rx_needed=(baud_rate*16);
 
 
-reg [23:0] acc_rx=23'd0;
+reg [23:0] acc_rx=24'd0;
 
 
 
 always @(posedge clk) begin
 if (!rstn) begin
         tick <= 1'b0;
-        acc_rx  <= 23'd0;
+        acc_rx  <= 24'd0;
 
     end
     else begin

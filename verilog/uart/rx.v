@@ -30,7 +30,7 @@ reg ready_reg = 1'b0;
 assign ready = ready_reg;
 assign data_out = data;
 
-// Synchronizer to prevent metastability
+// to prevent metastability
 always @(posedge clk) begin
     rx_sync_1 <= rx;
     rx_sync_2 <= rx_sync_1;
@@ -80,7 +80,7 @@ if (rx_tick_cnt == 4'd15) begin
         rx_state    <= RX_DATA;
         sampling    <= 3'd0;
         data_cnt    <= 4'd0;
-        rx_tick_cnt <= 4'd0; // Explicitly reset tick counter for bit 0
+        rx_tick_cnt <= 4'd0; 
     end else begin
         rx_state    <= RX_IDLE;
     end
@@ -92,7 +92,7 @@ end
                 if (rx_tick) begin
                     rx_tick_cnt <= rx_tick_cnt + 4'd1;
                     if (rx_tick_cnt <= 4'd5)  sampling <= 3'd0;
-                    // 5-sample majority voting window
+
                     if (rx_tick_cnt == 4'd6)  sampling <= sampling + rx_sync_2;
                     if (rx_tick_cnt == 4'd7)  sampling <= sampling + rx_sync_2;
                     if (rx_tick_cnt == 4'd8)  sampling <= sampling + rx_sync_2;
@@ -121,7 +121,7 @@ end
                 if (rx_tick) begin
                     rx_tick_cnt <= rx_tick_cnt + 4'd1;
 
-                    // Check stop bit line status at midpoint tick 7
+             
                     if (rx_tick_cnt == 4'd7) begin
                         if (rx_sync_2) begin
                             stop_valid <= 1'b1;
@@ -142,7 +142,7 @@ end
 RX_ERROR: begin
     if (rx_tick) begin
         rx_tick_cnt <= rx_tick_cnt + 4'd1;
-        // Only return to IDLE once the RX line goes back HIGH (idle state)
+      
         if (rx_tick_cnt == 4'd15 && rx_sync_2) begin
             rx_state <= RX_IDLE;
         end
