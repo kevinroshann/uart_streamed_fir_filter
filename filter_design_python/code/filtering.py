@@ -23,6 +23,7 @@ quantise_value=[quantise(i) for i in coefficients]
 print("quantised value",quantise_value)
 
 x = np.array([1])
+
 y_numpy = np.convolve(x, quantise_value)
 
  
